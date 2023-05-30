@@ -1,20 +1,26 @@
 type Developer {
   # Example field (placeholder)
-  exampleField: Int
+  id: Int
+  login: String
+  password: String
 }
 
 input CreateDeveloperInput {
   # Example field (placeholder)
-  exampleField: Int
+  login: String
+  password: String
 }
 
 input UpdateDeveloperInput {
   id: Int!
+  login: String
+  password: String
 }
 
 type Query {
   developersAll: [Developer]!
   developer(id: Int!): Developer
+  verifyDeveloper(login: String, password: String): Developer
 }
 
 type Mutation {

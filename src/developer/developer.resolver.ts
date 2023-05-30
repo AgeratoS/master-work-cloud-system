@@ -22,6 +22,11 @@ export class DeveloperResolver {
     return this.developerService.findOne(id);
   }
 
+  @Query('verifyDeveloper')
+  verifyDeveloper(@Args('login') login: string, @Args('password') password: string) {
+    return this.developerService.findByLoginPassword(login, password);
+  }
+
   @Mutation('updateDeveloper')
   update(@Args('updateDeveloperInput') updateDeveloperInput: UpdateDeveloperInput) {
     return this.developerService.update(updateDeveloperInput.id, updateDeveloperInput);

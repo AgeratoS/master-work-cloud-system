@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgres://elsolcansado:root@localhost:5432/elsolcansado"
+}
+
+model Service {
+  id     Int            @id @default(autoincrement())
+  name   String         @default("Service")
+  desc   String?
+  url    String
+  metric ServiceMetric?
+  logs   ServiceLog[]
+}
+
+model ServiceMetric {
+  id        Int      @id @default(autoincrement())
+  serviceId Int      @unique
+  requests  Int      @default(0)
+  service   Service? @relation(fields: [serviceId], references: [id])
+}
+
+model ServiceLog {
+  id        Int      @id @default(autoincrement())
+  serviceId Int
+  time      DateTime
+  log       String?
+  service   Service  @relation(fields: [serviceId], references: [id])
+}
+
+model Developer {
+  id       Int    @id @default(autoincrement())
+  login    String
+  password String
+
+  tokens Token[]
+}
+
+model Token {
+  id        Int       @id @default(autoincrement())
+  devId     Int
+  hash      String
+  expired   DateTime
+  belongsTo Developer @relation(fields: [devId], references: [id])
+}

@@ -1,1 +1,4 @@
-export class CreateDeveloperInput {}
+export class CreateDeveloperInput {
+    login: string;
+    password: string;
+}
