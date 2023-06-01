@@ -31,6 +31,7 @@
     "@nestjs/typeorm": "^9.0.1",
     "@prisma/client": "^4.15.0",
     "graphql": "^16.6.0",
+    "graphql-type-datetime": "^0.2.4",
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

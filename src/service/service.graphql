@@ -1,15 +1,37 @@
+scalar Datetime
+
 type Service {
   # Example field (placeholder)
-  exampleField: Int
+  id: ID!
+  name: String!
+  desc: String
+  url: String!
+  metric: ServiceMetric
+  logs: [ServiceLog]!
+}
+
+type ServiceMetric {
+  id: ID!
+  requests: Int!
+}
+
+type ServiceLog {
+  id: ID!
+  time: Datetime!
+  log: String
 }
 
 input CreateServiceInput {
-  # Example field (placeholder)
-  exampleField: Int
+  name: String!
+  desc: String
+  url: String!
 }
 
 input UpdateServiceInput {
   id: Int!
+  name: String!
+  desc: String
+  url: String!
 }
 
 type Query {

@@ -1,15 +1,16 @@
 import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLISODateTime, GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { DeveloperModule } from './developer/developer.module';
 import { ServiceModule } from './service/service.module';
-import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      resolvers: {
+        Datetime: GraphQLISODateTime
+      },
       playground: true,
       typePaths: ['./**/*.graphql'],
     }),

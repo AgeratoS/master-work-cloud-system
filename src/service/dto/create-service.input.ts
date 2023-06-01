@@ -1,1 +1,5 @@
-export class CreateServiceInput {}
+export class CreateServiceInput {
+    name: string
+    desc?: string
+    url: string
+}
