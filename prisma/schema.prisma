@@ -10,13 +10,23 @@ datasource db {
   url      = "postgres://elsolcansado:root@localhost:5432/elsolcansado"
 }
 
+enum HttpVerb {
+  GET
+  POST
+  PUT
+  PATCH
+  DELETE
+}
+
 model Service {
-  id     Int            @id @default(autoincrement())
-  name   String         @default("Service")
-  desc   String?
-  url    String
-  metric ServiceMetric?
-  logs   ServiceLog[]
+  id       Int            @id @default(autoincrement())
+  name     String         @default("Service")
+  desc     String?
+  url      String
+  isActive Boolean        @default(false)
+  verb     HttpVerb       @default(GET)
+  metric   ServiceMetric?
+  logs     ServiceLog[]
 }
 
 model ServiceMetric {

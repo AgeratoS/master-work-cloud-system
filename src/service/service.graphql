@@ -1,11 +1,12 @@
 scalar Datetime
 
 type Service {
-  # Example field (placeholder)
   id: ID!
   name: String!
   desc: String
   url: String!
+  isActive: Boolean!
+  verb: String!
   metric: ServiceMetric
   logs: [ServiceLog]!
 }
