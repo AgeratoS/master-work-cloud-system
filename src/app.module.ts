@@ -5,6 +5,7 @@ import { DeveloperModule } from './developer/developer.module';
 import { ServiceModule } from './service/service.module';
 import { AuthModule } from './auth/auth.module';
 import { GraphQLJSONObject } from 'graphql-type-json';
+import { SolutionModule } from './solution/solution.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { GraphQLJSONObject } from 'graphql-type-json';
     DeveloperModule,
     ServiceModule,
     AuthModule,
+    SolutionModule,
   ],
   providers: [],
   controllers: []

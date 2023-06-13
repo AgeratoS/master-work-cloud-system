@@ -1,0 +1,8 @@
+type Solution {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  solutions: [Solution]!
+}
