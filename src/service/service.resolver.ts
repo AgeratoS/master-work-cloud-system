@@ -37,4 +37,9 @@ export class ServiceResolver {
   remove(@Args('id') id: number) {
     return this.serviceService.remove(id);
   }
+
+  @Mutation('removeServices')
+  removeMany(@Args('ids') ids: number[]) {
+    return this.serviceService.removeMany(ids)
+  }
 }

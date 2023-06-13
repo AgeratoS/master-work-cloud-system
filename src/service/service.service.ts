@@ -57,10 +57,20 @@ export class ServiceService {
     })
   }
 
-  remove(id: number) {
-    return this.prisma.service.delete({
+  async remove(id: number) {
+    return await this.prisma.service.delete({
       where: {
         id
+      }
+    })
+  }
+
+  async removeMany(ids: number[]) {
+    return await this.prisma.service.deleteMany({
+      where: {
+        id: {
+          in: ids
+        }
       }
     })
   }

@@ -6,8 +6,9 @@ type Service {
   name: String!
   desc: String
   externalUrl: String!
-  internalUrl: String!
-  verb: String!
+  serviceSolutionId: Int!
+  apiKey: String
+  appId: String
 }
 
 type ServiceMetric {
@@ -21,17 +22,27 @@ type ServiceLog {
   log: String
 }
 
+type BatchPayload {
+  count: Int!
+}
+
 input CreateServiceInput {
   name: String!
   desc: String
-  url: String!
+  externalUrl: String!
+  serviceSolutionId: Int!
+  apiKey: String
+  appId: String
 }
 
 input UpdateServiceInput {
   id: Int!
   name: String!
   desc: String
-  url: String!
+  externalUrl: String!
+  serviceSolutionId: Int!
+  apiKey: String
+  appId: String
 }
 
 input CloudParams {
@@ -52,4 +63,5 @@ type Mutation {
   createService(createServiceInput: CreateServiceInput!): Service!
   updateService(updateServiceInput: UpdateServiceInput!): Service!
   removeService(id: Int!): Service
+  removeServices(ids: [Int!]): BatchPayload
 }
