@@ -2,6 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ServiceService } from './service.service';
 import { CreateServiceInput } from './dto/create-service.input';
 import { UpdateServiceInput } from './dto/update-service.input';
+import { ICloudParams, IMethod } from './adapters/common';
 
 @Resolver('Service')
 export class ServiceResolver {
@@ -15,6 +16,11 @@ export class ServiceResolver {
   @Query('serviceAll')
   findAll() {
     return this.serviceService.findAll();
+  }
+
+  @Query('call')
+  call(@Args('id') id: number, @Args('params') params: ICloudParams) {
+    return this.serviceService.call(id, params);
   }
 
   @Query('service')

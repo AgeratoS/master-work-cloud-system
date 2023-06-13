@@ -18,30 +18,21 @@ enum HttpVerb {
   DELETE
 }
 
+model ServiceSolution {
+  id      Int       @id @default(autoincrement())
+  name    String
+  Service Service[]
+}
+
 model Service {
-  id       Int            @id @default(autoincrement())
-  name     String         @default("Service")
-  desc     String?
-  url      String
-  isActive Boolean        @default(false)
-  verb     HttpVerb       @default(GET)
-  metric   ServiceMetric?
-  logs     ServiceLog[]
-}
-
-model ServiceMetric {
-  id        Int      @id @default(autoincrement())
-  serviceId Int      @unique
-  requests  Int      @default(0)
-  service   Service? @relation(fields: [serviceId], references: [id])
-}
-
-model ServiceLog {
-  id        Int      @id @default(autoincrement())
-  serviceId Int
-  time      DateTime
-  log       String?
-  service   Service  @relation(fields: [serviceId], references: [id])
+  id                Int             @id @default(autoincrement())
+  name              String          @default("Service")
+  desc              String?
+  externalUrl       String
+  appId             String?
+  apiKey            String?
+  serviceSolution   ServiceSolution @relation(fields: [serviceSolutionId], references: [id])
+  serviceSolutionId Int
 }
 
 model Developer {

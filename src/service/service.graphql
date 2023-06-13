@@ -1,14 +1,13 @@
 scalar Datetime
+scalar GraphQLJSON
 
 type Service {
   id: ID!
   name: String!
   desc: String
-  url: String!
-  isActive: Boolean!
+  externalUrl: String!
+  internalUrl: String!
   verb: String!
-  metric: ServiceMetric
-  logs: [ServiceLog]!
 }
 
 type ServiceMetric {
@@ -35,9 +34,18 @@ input UpdateServiceInput {
   url: String!
 }
 
+input CloudParams {
+  method: String!
+  entityName: String!
+  addingParams: GraphQLJSON
+  updatingParams: GraphQLJSON
+  deletingParams: GraphQLJSON
+}
+
 type Query {
   serviceAll: [Service]!
   service(id: Int!): Service
+  call(id: Int!, params: CloudParams!): GraphQLJSON
 }
 
 type Mutation {
